@@ -1,34 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, memo } from "react";
 import { usePrevious } from "../utils";
 
-export default function Paragraph({cursor, children}: {cursor: number, children: string}) {
-    const prevCursor = usePrevious<number>(cursor, 0)!;
+
+function Paragraph ({ children }: { children: string }) {
+    
 
     let char = 0;
 
-    const charCount = children.length;
+    
 
-    // Add and remove listeners for keyboard press
-    useEffect( () => {
-        const letters = document.getElementsByClassName("letter");
-
-        letters[cursor].classList.add("current");
-
-        return () => {
-
-        };
-    }, []);
-
-    // update cursor
-    useEffect( () => {
-        // Event listeners for key press responsible for updating cursors
-
-        const letters = document.getElementsByClassName("letter");
-
-        letters[prevCursor].classList.remove("current");
-        letters[cursor].classList.add("current");
-        
-    }, [cursor]);
+    // Make sure keyUp event listener has access to latest version of text i.e., after Paragraph loads
 
     return (
         <div className="paper">
@@ -38,7 +19,7 @@ export default function Paragraph({cursor, children}: {cursor: number, children:
                     children.split(/(?<=\s)/).map( (word, i) => (
                         <div className="word" key={i}>
                             {
-                                word.split('').map( c => <div className="letter" key={char++}>{c}</div>)
+                                word.split('').map( c => <div id={`letter-${char}`} className="letter" key={char++}>{c}</div>)
                             }
                         </div>
                         )
@@ -48,3 +29,5 @@ export default function Paragraph({cursor, children}: {cursor: number, children:
         </div>
     );
 }
+
+export default memo(Paragraph);

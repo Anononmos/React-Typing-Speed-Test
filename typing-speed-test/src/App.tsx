@@ -4,7 +4,6 @@ import Paragraph from './components/Paragraph';
 import './App.css';
 
 function App() {
-	const [cursor, setCursor] = useState(0);
 	const [text, setText] = useState("Loading...");
 
 	useEffect( () => {
@@ -16,7 +15,7 @@ function App() {
 
 	return (
 		<div className="App">
-			<Paragraph cursor={cursor}>
+			<Paragraph>
 				{text}
 			</Paragraph>
 		</div>
