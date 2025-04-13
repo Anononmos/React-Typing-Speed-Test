@@ -19,7 +19,6 @@ function App() {
 			<Paragraph cursor={cursor}>
 				{text}
 			</Paragraph>
-			<button onClick={ () => setCursor(cursor + 1) }>Move Cursor</button>
 		</div>
 	);
 }

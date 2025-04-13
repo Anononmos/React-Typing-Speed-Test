@@ -8,8 +8,11 @@ export default function Paragraph({cursor, children}: {cursor: number, children:
 
     const charCount = children.length;
 
-    // Add and remove listeners
+    // Add and remove listeners for keyboard press
     useEffect( () => {
+        const letters = document.getElementsByClassName("letter");
+
+        letters[cursor].classList.add("current");
 
         return () => {
 
@@ -20,9 +23,10 @@ export default function Paragraph({cursor, children}: {cursor: number, children:
     useEffect( () => {
         // Event listeners for key press responsible for updating cursors
 
-        const letters = document.getElementsByClassName("letters");
+        const letters = document.getElementsByClassName("letter");
 
-        console.log(prevCursor, cursor);
+        letters[prevCursor].classList.remove("current");
+        letters[cursor].classList.add("current");
         
     }, [cursor]);
 
