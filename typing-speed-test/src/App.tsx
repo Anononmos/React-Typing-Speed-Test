@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
+import { useState, useEffect } from 'react';
+import Paragraph from './components/Paragraph';
+
 import './App.css';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const [cursor, setCursor] = useState(0);
+	const [text, setText] = useState("Loading...");
+
+	useEffect( () => {
+		fetch("sample-texts/Sayri-Tupac.txt")
+			.then( res => res.text() )
+			.then( data => setText(data) )
+			.catch( error => console.error(error) )
+	}, []);
+
+	return (
+		<div className="App">
+			<Paragraph cursor={cursor}>
+				{text}
+			</Paragraph>
+			<button onClick={ () => setCursor(cursor + 1) }>Move Cursor</button>
+		</div>
+	);
 }
 
 export default App;
