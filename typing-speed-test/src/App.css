@@ -24,19 +24,34 @@
 	width: 1rem;
 	margin-top: 10px;
 	margin-bottom: 5px;
+	margin-right: 2px;
 
 	text-align: center;
 }
 
 .letter::selection {
-	background-color: #3295db;
+	background-color: var(--selected-colour);
 	color: white;
 }
 
 .current {
+	color: var(--selected-colour);
+
 	/* Counter space displaced by border */
 	margin-bottom: -2px;
 
-	border-bottom: solid 2px #3295db;
+	border-bottom: solid 2px var(--selected-colour);
 	border-radius: 5%;
+}
+
+.correct {
+	color: var(--correct-colour);
+	background-color: var(--correct-bg);
+	border-radius: 5px;
+}
+
+.incorrect {
+	color: var(--incorrect-colour);
+	background-color: var(--incorrect-bg);
+	border-radius: 5px;
 }

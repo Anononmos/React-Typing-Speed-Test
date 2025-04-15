@@ -4,20 +4,26 @@ import Paragraph from './components/Paragraph';
 import './App.css';
 
 function App() {
-	const [text, setText] = useState("Loading...");
+	const [didMount, setDidMount] = useState(false);
+	const [text, setText] = useState<string>("");
 
 	useEffect( () => {
 		fetch("sample-texts/Sayri-Tupac.txt")
 			.then( res => res.text() )
-			.then( data => setText(data) )
+			.then( data => { 
+				setText(data); 
+				setDidMount(true);
+			})
 			.catch( error => console.error(error) )
 	}, []);
 
 	return (
 		<div className="App">
-			<Paragraph>
-				{text}
-			</Paragraph>
+			{ (didMount) ? (
+				<Paragraph>
+					{text}
+				</Paragraph>
+			) : "" }
 		</div>
 	);
 }

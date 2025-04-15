@@ -2,6 +2,11 @@
 
 :root {
 	--text-colour: #4a4a4a;
+	--selected-colour: #3295db;
+	--correct-colour: #6bcc60;
+	--correct-bg: #edf7e7;
+	--incorrect-colour: #ce3e44;
+	--incorrect-bg: #fb978e;
 }
 
 body {
@@ -16,4 +21,8 @@ body {
 code {
 	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
 		monospace;
+}
+
+@keyframes fade-in-out {
+	
 }
